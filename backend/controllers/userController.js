@@ -82,8 +82,74 @@ const logoutCurrentUser = asyncHandler(async (req, res) => {
     return res.status(200).json({ message: 'Logged out successfully'}); //Set the status code to 200 (OK) and send the response    
 });
 
+const getAllUsers = asyncHandler(async (req, res) => {
+    const users = await User.find({}); //Find all the users in the database
+    return res.json(users); //Send the users as a response
+});
+
+const getUserById = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id); //Find the user by the ID in the request
+
+    if(!user){ //If the user is not found
+        return res.status(404).json({ message: 'User not found' }); //Set the status code to 404 (Not Found) and send the response
+    }else{
+        return res.json({ 
+            _id: user._id, 
+            username: user.username, 
+            email: user.email, 
+            role: user.role, 
+        });
+    }
+});
+
+const updateUserById = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id); //Find the user by the ID in the request
+
+    if(!user){ //If the user is not found
+        return res.status(404).json({ message: 'User not found' }); //Set the status code to 404 (Not Found) and send the response
+    }else{
+        const { username, email, password, role } = req.body; //Get the name, email, password, and isAdmin from the request body
+
+        if(username) user.username = username; //If the name is provided, set the name of the user
+        if(email) user.email = email; //If the email is provided, set the email of the user
+        if(password) { //If the password is provided
+            const salt = await bcrypt.genSalt(10); //Generate a salt for the password
+            user.password = await bcrypt.hash(password, salt); //Hash the password with the salt
+        }
+        if(role) user.role = role; //If the role is provided, set the admin status of the user
+
+        await user.save(); //Save the updated user to the database
+
+        return res.json({ //Send the updated user as a response
+            _id: user._id, 
+            username: user.username, 
+            email: user.email, 
+            role: user.role, 
+        });
+    }
+});
+
+const deleteUserById = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id); //Find the user by the ID in the request 
+
+    if(!user){ //If the user is not found
+        return res.status(404).json({ message: 'User not found' }); //Set the status code to 404 (Not Found) and send the response
+    }else{
+        if(user.role === "admin"){ //If the user is an admin
+            return res.status(400).json({ message: 'Cannot delete admin user' }); //Set the status code to 400 (Bad Request) and send the response
+        }else{
+            await User.deleteOne({ _id: user._id }); //Delete the user from the database
+            return res.json({ message: 'User removed' }); //Send a success message as a response
+        }
+    }
+});
+
 export {
     createUser,
     loginAuthUser,
-    logoutCurrentUser
+    logoutCurrentUser,
+    getAllUsers,
+    getUserById,
+    updateUserById,
+    deleteUserById,
 }
