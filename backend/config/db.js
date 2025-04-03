@@ -4,8 +4,6 @@ const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI, {
       dbName: "asset_management",
-      useNewUrlParser: true, // Enables new URL parser to avoid deprecation warnings
-      useUnifiedTopology: true, // Uses the new server discovery and monitoring engine
     }); //Using async/await to connect to the MongoDB database using the MONGO_URI env variable.
     console.log(`MongoDB Connected: ${conn.connection.host}`); // If the connection is successful, we log a message to the console.
   } catch (error) {

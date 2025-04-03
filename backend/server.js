@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import connectDB from './config/db.js';
 //Routes ⬇️
 import userRoutes from './routes/userRoutes.js';
+import assetRoutes from './routes/assetRoutes.js';
 
 dotenv.config(); //Loading de environment variables from .env
 connectDB(); //Connecting de DB of Mongo 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use(cookieParser()); // Parse cookies from request headers
 
 app.use('/api/users', userRoutes);
+app.use('/api/assets', assetRoutes);
 
 app.listen(port, () => { 
     console.log(`Server is running on port ${port}`); // Starts the server and logs the active port
