@@ -1,8 +1,8 @@
 //Packages ⬇️
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { useDispatch } from "react-redux";
+import { toggleSideMenu } from '../../redux/slices/uiSlice';
 //Components ⬇️
-import DecimetrixContext from '../../context/DecimetrixContext';
 import LogoutButton from '../LogoutButton';
 //Hooks ⬇️
 import useAuth from '../../hooks/useAuth';
@@ -13,14 +13,14 @@ import { ThreeBarsIcon, UserCircleIcon } from '../../assets/icons';
 import './styles.css';
 
 const Header = () => {
-    const { toggleSideMenu } = useContext(DecimetrixContext); // Get toggle function from context
+    const dispatch = useDispatch(); // Hook to send actions to redux
     const { user } = useAuth(); // Get user data from custom hook
     return (
         <>
             <header>
                 <div className='header-first-column'>
                     {user && ( // Show menu button only if user is logged in
-                        <button className='menu-button' onClick={toggleSideMenu}>
+                        <button className='menu-button' onClick={() => dispatch(toggleSideMenu())} >
                             <ThreeBarsIcon className='bars-icon' />
                         </button>
                     )}

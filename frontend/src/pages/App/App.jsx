@@ -7,7 +7,6 @@ import Dashboard from "../Dashboard";
 //Components ⬇️
 import ProtectedRoute from "../../components/ProtectedRoute";
 import Layout from "../../components/Layout";
-import DecimetrixProvider from "../../context/DecimetrixProvider";
 //Styles ⬇️
 import './App.css'
 
@@ -31,13 +30,11 @@ const AppRoutes = () => {
 function App() {
   return (
     <>
-      <DecimetrixProvider> 
         <BrowserRouter>
           <Layout>
             <AppRoutes />
           </Layout>  
         </BrowserRouter>
-      </DecimetrixProvider>
     </>
   )
 }
