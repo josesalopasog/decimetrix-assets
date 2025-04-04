@@ -4,6 +4,7 @@ import { useRoutes, BrowserRouter } from "react-router-dom";
 import Home from "../Home"
 import Login from "../Login"
 import Dashboard from "../Dashboard";
+import Assets from "../Dashboard/Assets";
 //Components ⬇️
 import ProtectedRoute from "../../components/ProtectedRoute";
 import Layout from "../../components/Layout";
@@ -20,7 +21,8 @@ const AppRoutes = () => {
       path: '/', 
       element: <ProtectedRoute />,
       children: [
-        { path: 'dashboard', element: <Dashboard /> }
+        { path: 'dashboard', element: <Dashboard /> },
+        { path: 'dashboard/assets', element: <Assets /> },  
       ]
     }
   ];

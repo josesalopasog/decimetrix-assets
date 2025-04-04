@@ -8,6 +8,7 @@ import useAuth from '../../hooks/useAuth';
 import { UserCircleIcon, XMarkIcon } from '../../assets/icons';
 //Styles ⬇️
 import './styles.css';
+import { Link } from "react-router-dom";
 
 const SideMenu = () => {
   const { user } = useAuth(); // Get user data from custom hook
@@ -33,17 +34,25 @@ const SideMenu = () => {
             </div>
           </div>
           <div className='side-menu-body'>
-            <h2>Activos</h2>
+            <Link to="/dashboard"><h2>Inicio</h2></Link>
+            <hr className='text-gray-300' />
+            <Link to="/dashboard/assets"><h2>Activos</h2></Link>
             <ul>
-              <li>Ver activos</li>
-              <li>Agregar activo</li>
-              <li>Mapas</li>
+              <Link to="/dashboard/assets#see-assets">
+                <li>Ver activos</li>
+              </Link>
+              <Link to="/dashboard/assets#add-assets">
+                <li>Agregar activo</li>
+              </Link>  
+              <Link to="/dashboard/assets#assets-map">
+                <li>Mapas</li>
+              </Link>
             </ul>
             <hr className='text-gray-300' />
             <h2>Reportes</h2>
             <ul>
               <li>Estadisticas</li>
-              <li>Generar reportes</li> 
+              <li>Generar reportes</li>
               <li>Historial</li>
             </ul>
             {user.role === 'admin' && ( // Show admin options only if user is admin
