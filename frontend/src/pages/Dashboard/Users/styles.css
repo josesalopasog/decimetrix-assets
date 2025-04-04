@@ -1,0 +1,111 @@
+.users-container {
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f8f8;
+  padding: 10px 20px;
+}
+
+.users-content {
+  display: flex;
+  flex-direction: column;
+  min-width: calc(100% - 350px);
+  max-width: calc(100% - 280px);
+  width: 80%;
+}
+
+.users-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  margin: 20px 0;
+}
+
+.users-form {
+  display: grid;
+  max-width: 700px;
+  grid-template-areas:
+    "name email"
+    "password role"
+    "button button";
+  gap: 20px 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  grid-area: name;
+}
+
+.email {
+  grid-area: email;
+}
+
+.role {
+  grid-area: role;
+}
+
+.password {
+  grid-area: password;
+}
+
+.confirm-password {
+  grid-area: confirm-password;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.button {
+  grid-area: button;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+}
+
+.button button {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 100%;
+  padding: 10px 40px;
+  gap: 10px;
+  background: linear-gradient(to right, #02feff, #4634c0, #02feff);
+  background-size: 200% 100%;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+  transition: background-position 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.button button:hover {
+  background-position: 100% 0;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.add-icon {
+  width: 30px;
+  height: 30px;
+}
+
+/*--- Responsive Design (Mobile) ⬇️ ---*/
+@media (max-width: 768px) {
+  .users-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+}

@@ -38,8 +38,6 @@ const createUser = asyncHandler(async (req, res) => {
   try {
     await newUser.save(); //Save the new user to the database
 
-    generateToken(res, newUser._id); //Generate a token for the user
-
     return res.status(201).json({
       //Set the status code to 201 (Created) and send the response
       _id: newUser._id,

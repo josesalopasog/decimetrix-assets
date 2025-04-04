@@ -44,6 +44,7 @@ const Assets = () => {
                 latitude: "",
                 longitude: "",
             });
+
         } catch (error) { // Handle any errors that occur during asset creation
             console.error("Error al crear el activo:", error);
         }

@@ -43,7 +43,7 @@ const SideMenu = () => {
               </Link>
               <Link to="/dashboard/assets#add-assets">
                 <li>Agregar activo</li>
-              </Link>  
+              </Link>
               <Link to="/dashboard/assets#assets-map">
                 <li>Mapas</li>
               </Link>
@@ -58,10 +58,14 @@ const SideMenu = () => {
             {user.role === 'admin' && ( // Show admin options only if user is admin
               <>
                 <hr className='text-gray-300' />
-                <h2>Administración</h2>
+                <Link to='/dashboard/users'><h2>Administración</h2></Link>
                 <ul>
-                  <li>Usuarios</li>
-                  <li>Configuración</li>
+                  <Link to='/dashboard/users#see-users'>
+                    <li>Usuarios</li>
+                  </Link>
+                  <Link to='/dashboard/users#add-users'>
+                    <li>Agregar Usuario</li>
+                  </Link>
                 </ul>
               </>
             )}
