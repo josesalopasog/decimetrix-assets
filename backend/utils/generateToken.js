@@ -7,9 +7,10 @@ const generateToken = (res, userId) => { //Create a function to generate a token
 
     res.cookie('jwt', token, { //Set the token as a cookie
         expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), //Set the expiration time of the cookie
-        secure: process.env.NODE_ENV === 'development', //Set the cookie to be secure in production
+        secure: process.env.NODE_ENV === 'production', //Set the cookie to be secure in production
         httpOnly: true, //Set the cookie to be accessible only by the server
-        sameSite: 'strict', //Set the cookie to be sent only to the same site
+        sameSite: 'none', //Set the cookie to be accessible only by the server
+        path: '/', //Set the path of the cookie to be accessible by all routes
     });
 
     return token;
