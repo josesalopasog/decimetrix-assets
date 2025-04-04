@@ -1,15 +1,16 @@
 //Packages ⬇️
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios"; //For http requests
+import api from "../../api/axios";
 
 // Async action for login users
 const loginUser = createAsyncThunk(
   "auth/loginUser", //Action name
-  async (credentials, thunkAPI) => {
+  async ({ email, password }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/users/login",
-        credentials
+      const response = await api.post(
+        "/users/login",
+        { email, password },
+        { withCredentials: true } // Send cookies with the request
       ); // Send credentials to backend
       return response.data; // Return the response (includes the token)
     } catch (error) {
@@ -19,13 +20,15 @@ const loginUser = createAsyncThunk(
 );
 
 // Async action for logout users
-const logoutUser = createAsyncThunk("auth/logoutUser", async (_, thunkAPI) => {
-  try {
-    await axios.post("http://localhost:5000/api/users/logout"); // Call backend to log out
-    return null; // Return null to clear Redux state
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data); // Handle errors
-  }
+const logoutUser = createAsyncThunk(
+  "auth/logoutUser", 
+  async (_, thunkAPI) => {
+    try {
+      await api.post("/users/logout"); // Call backend to log out
+      return null; // Return null to clear Redux state
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data); // Handle errors
+    }
 });
 
 // Initial authentication state

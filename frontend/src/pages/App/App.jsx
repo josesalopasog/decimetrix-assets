@@ -6,17 +6,23 @@ import Login from "../Login"
 import Dashboard from "../Dashboard";
 //Components ⬇️
 import ProtectedRoute from "../../components/ProtectedRoute";
+import Layout from "../../components/Layout";
+import DecimetrixProvider from "../../context/DecimetrixProvider";
 //Styles ⬇️
 import './App.css'
 
 const AppRoutes = () => {
   let routes = [
+    // Public routes
     {path: '/', element: <Home />},
     {path: '/login', element: <Login />},
+    // Private routes
     {
-      path: '/dashboard', 
-      element: <ProtectedRoute/>,
-      children: [{path:"",element:<Dashboard/>}]
+      path: '/', 
+      element: <ProtectedRoute />,
+      children: [
+        { path: 'dashboard', element: <Dashboard /> }
+      ]
     }
   ];
   return useRoutes(routes);
@@ -25,11 +31,15 @@ const AppRoutes = () => {
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+      <DecimetrixProvider> 
+        <BrowserRouter>
+          <Layout>
+            <AppRoutes />
+          </Layout>  
+        </BrowserRouter>
+      </DecimetrixProvider>
     </>
   )
 }
 
-export default App
+export default App;

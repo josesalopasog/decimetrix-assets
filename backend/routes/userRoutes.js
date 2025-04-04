@@ -2,7 +2,8 @@ import express from 'express';
 import { 
     createUser, 
     getAllUsers, 
-    loginAuthUser, 
+    loginAuthUser,
+    getCurrentUser, 
     logoutCurrentUser,
     getUserById,
     updateUserById,
@@ -13,12 +14,12 @@ import { authenticate, isAdmin } from '../middlewares/authMiddleware.js';
 
 const router = express.Router(); //Create a new router
 
-router
-    .route('/') //Route for /api/users
+router.route('/') //Route for /api/users
 
 router.post('/login', loginAuthUser); //Login with authenticated user
 router.post('/logout', logoutCurrentUser); //Logout the current user
 
+router.get('/me', authenticate, getCurrentUser); //Get the current user (only for authenticated users)
 
 //--- ADMIN ROUTES ⬇️ ---
 router

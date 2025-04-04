@@ -1,0 +1,26 @@
+.logout-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  gap: 5px;
+  background: linear-gradient(to right, #02feff, #4634c0, #02feff);
+  background-size: 200% 100%;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  transition: background-position 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-position: 100% 0;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.logout-icon {
+  width: 25px;
+  height: 25px;
+}
