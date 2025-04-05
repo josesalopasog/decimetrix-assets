@@ -17,11 +17,11 @@ const useWSNotifications = () => {
     });
 
     socket.on("assetCreated", (data) => {
-      toast.success(`📍 Asset "${data.asset.name}" created`);
+      toast.success(`📍 Asset "${data.name}" created`);
     });
 
     socket.on("assetUpdated", (data) => {
-      toast.info(`🔧 Asset "${data.asset.name}" updated`);
+      toast.info(`🔧 Asset "${data.name}" updated`);
     });
 
     socket.on("assetDeleted", () => {

@@ -103,15 +103,12 @@ const getCurrentUser = (req, res) => {
 };
 
 const logoutCurrentUser = asyncHandler(async (req, res) => {
-  res.cookie(
-    "jwt", //Set the cookie name to 'jwt'
-    "", //Set the cookie to an empty string
-    {
-      httpOnly: true, //Set the cookie to be accessible only
-      expires: new Date(0), //Set the expiration date to the past
-    }
-  );
-  return res.status(200).json({ message: "Logged out successfully" }).clearCookie('jwt'); //Set the status code to 200 (OK) and send the response
+  res.clearCookie('jwt', {
+    httpOnly: true,
+    sameSite: 'None',
+    secure: true, 
+  });
+  return res.status(200).json({ message: "Logged out successfully" })//Set the status code to 200 (OK) and send the response
 });
 
 const getAllUsers = asyncHandler(async (req, res) => {
