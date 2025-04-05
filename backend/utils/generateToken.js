@@ -9,7 +9,7 @@ const generateToken = (res, userId) => { //Create a function to generate a token
         expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), //Set the expiration time of the cookie
         secure: process.env.NODE_ENV === 'production', //Set the cookie to be secure in production
         httpOnly: true, //Set the cookie to be accessible only by the server
-        sameSite: 'none', //Set the cookie to be accessible only by the server
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', //Set the cookie to be accessible only by the server
         path: '/', //Set the path of the cookie to be accessible by all routes
     });
 

@@ -1,0 +1,97 @@
+.update-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.update-modal {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 400px;
+}
+
+.update-modal-title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 34px;
+  margin: 10px 0px;
+}
+
+.update-modal-icon {
+  width: 35px;
+  height: 35px;
+}
+
+.update-form input {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px 0px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.update-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.update-buttons button {
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.update-buttons button:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(to right, #00ff80, #11cd00, #00ff80);
+  background-size: 200% 100%;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #fff;
+  font-weight: bold;
+  transition: background-position 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.update-buttons button:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(to right, #ff006f, #cd0000, #ff006f);
+  background-size: 200% 100%;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #fff;
+  font-weight: bold;
+  transition: background-position 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.update-buttons button:first-child:hover {
+  background-position: 100% 0;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.update-buttons button:last-child:hover {
+  background-position: 100% 0;
+  transition: background-position 0.5s ease-in-out;
+}
