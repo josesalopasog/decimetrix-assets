@@ -12,15 +12,17 @@ import AssetsTable from "../../../components/AssetsTable";
 import AssetsForm from "../../../components/AssetsForm";
 //Styles ⬇️
 import "./styles.css";
+import { openSideMenu } from "../../../redux/slices/uiSlice";
 
 const Assets = () => {
     useWSNotifications(); //Hook fot WS events
     const location = useLocation(); // Hook to get the current location
     const dispatch = useDispatch(); // Hook to send actions to redux
     const { assets, loading, error } = useSelector((state) => state.assets); // Selectors to get assets, loading and error states from redux
-
+    
     useEffect(() => {
         dispatch(fetchAssets());
+        dispatch(openSideMenu());
     }, [dispatch]);
 
     useEffect(() => {

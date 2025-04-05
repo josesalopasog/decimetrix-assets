@@ -14,8 +14,11 @@ const uiSlice = createSlice({
     closeSideMenu: (state) => {
       state.isSideMenuOpen = false;
     },
+    openSideMenu: (state) => {
+      state.isSideMenuOpen = true;
+    },
   },
 });
 
-export const { toggleSideMenu, closeSideMenu } = uiSlice.actions;
+export const { toggleSideMenu, closeSideMenu, openSideMenu } = uiSlice.actions;
 export default uiSlice.reducer;

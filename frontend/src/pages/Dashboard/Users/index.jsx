@@ -11,13 +11,15 @@ import UsersForm from "../../../components/UsersForm";
 import UsersTable from "../../../components/UsersTable";
 //Styles ⬇️
 import "./styles.css";
+import { openSideMenu} from "../../../redux/slices/uiSlice";
 
 const Users = () => {
     useWSNotifications(); //Custom Hook for WS notifications
+   
     const location = useLocation(); // Hook to get the current location
     const dispatch = useDispatch(); // Hook to send actions to redux
     const { users, loading, error } = useSelector((state) => state.users); // Selectors to get users, loading and error states from redux
-
+    
     useEffect(() => {
         if (location.hash) {  // Checks if the URL contains a hash
             const targetId = location.hash.replace("#", ""); // Removes the '#' to get the actual ID
@@ -27,9 +29,10 @@ const Users = () => {
             }
         }
     }, [location]);
-
+    
     useEffect(() => {
         dispatch(fetchUsers());
+        dispatch(openSideMenu());
     }, [dispatch]);
 
     if (loading) return <p>Cargando usuarios...</p>;
