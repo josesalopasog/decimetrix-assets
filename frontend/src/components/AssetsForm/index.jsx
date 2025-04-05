@@ -111,7 +111,7 @@ const AssetsForm = () => {
                     required
                 />
             </div>
-            <div className="form-group button">
+            <div className="button-add-asset">
                 <button type="submit">
                     <PluseCircleIcon className="add-icon" />
                     <span>Agregar</span>

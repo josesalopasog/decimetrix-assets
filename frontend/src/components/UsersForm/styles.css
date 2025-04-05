@@ -1,10 +1,9 @@
-.assets-form {
+.users-form {
   display: grid;
   max-width: 700px;
   grid-template-areas:
-    "name type"
-    "description description"
-    "latitude longitude"
+    "name email"
+    "password role"
     "button button";
   gap: 20px 10px;
   grid-template-columns: 1fr 1fr;
@@ -19,7 +18,24 @@
   grid-area: name;
 }
 
-.name input {
+.email {
+  grid-area: email;
+}
+
+.role {
+  grid-area: role;
+}
+
+.password {
+  grid-area: password;
+}
+
+.confirm-password {
+  grid-area: confirm-password;
+}
+
+input,
+select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -27,62 +43,14 @@
   background-color: #fff;
 }
 
-.type {
-  grid-area: type;
-}
-
-.type select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-}
-
-.description {
-  grid-area: description;
-}
-
-.description input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-}
-
-.latitude {
-  grid-area: latitude;
-}
-
-.latitude input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-}
-
-.longitude {
-  grid-area: longitude;
-}
-
-.longitude input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-}
-
-.button-add-asset {
+.button-add-user {
   grid-area: button;
   display: flex;
   flex-direction: row;
   height: 50px;
 }
 
-.button-add-asset button {
+.button-add-user button {
   display: flex;
   justify-content: left;
   align-items: center;
@@ -99,7 +67,7 @@
   cursor: pointer;
 }
 
-.button-add-asset button:hover {
+.button-add-user button:hover {
   background-position: 100% 0;
   transition: background-position 0.5s ease-in-out;
 }
@@ -107,4 +75,23 @@
 .add-icon {
   width: 30px;
   height: 30px;
+}
+
+.show-password-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre checkbox y texto */
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.show-password-checkbox input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.show-password-checkbox label {
+  cursor: pointer;
+  user-select: none;
 }
