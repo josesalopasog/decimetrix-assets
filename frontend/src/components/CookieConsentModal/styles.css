@@ -1,0 +1,65 @@
+.cookie-modal-container {
+  position: fixed;
+  bottom: 0;
+  left:0;
+  display: flex;
+  z-index: 50;
+}
+.cookie-modal {
+  background-color: black;
+  color: white;
+  padding: 20px 40px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 100%;
+  margin: 20px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+.cookie-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.cookie-text {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.cookie-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cookie-button {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.cookie-button.reject {
+  background: linear-gradient(to right, #ff006f, #cd0000, #ff006f);
+  background-size: 200% 100%;
+}
+
+.cookie-button.reject:hover {
+  background-position: 100% 0;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.cookie-button.accept {
+  background: linear-gradient(to right, #00ff80, #11cd00, #00ff80);
+  background-size: 200% 100%;
+}
+
+.cookie-button.accept:hover {
+  background-position: 100% 0;
+  transition: background-position 0.5s ease-in-out;
+}
+

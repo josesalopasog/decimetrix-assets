@@ -36,7 +36,7 @@ const Header = () => {
                 <div className='header-third-column'>
                     {user ? ( // If user is logged in, show username and logout button
                         <>
-                            <span>{user.username}</span>
+                            <span className='header-username'>{user.username}</span>
                             <LogoutButton />
                         </>
                     ) : ( // If user is not logged in, show login button

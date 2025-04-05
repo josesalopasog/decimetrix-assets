@@ -8,6 +8,7 @@ import useWSNotifications from "../../hooks/useWSNotifications";
 //Styles ⬇️
 import './styles.css';
 import { ArrowUTurnLeftIcon, EyeOffIcon, EyeIcon } from "../../assets/icons";
+import CookieConsentModal from "../../components/CookieConsentModal";
 
 const Login = () => {
   useWSNotifications();
@@ -32,6 +33,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      <CookieConsentModal />
       <div className="login-box">
         <Link to="/" className="login-arrow-container">
           <ArrowUTurnLeftIcon className="arrow-icon" />
