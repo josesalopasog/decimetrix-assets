@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 //Slices ⬇️
 import { fetchAssets, } from "../../../redux/slices/assetsSlice";
+//Custom Hooks ⬇️
+import useWSNotifications from "../../../hooks/useWSNotifications";
 //Components ⬇️
 import AssetsMapView from "../../../components/AssetsMapView";
 import AssetsTable from "../../../components/AssetsTable";
@@ -12,6 +14,7 @@ import AssetsForm from "../../../components/AssetsForm";
 import "./styles.css";
 
 const Assets = () => {
+    useWSNotifications(); //Hook fot WS events
     const location = useLocation(); // Hook to get the current location
     const dispatch = useDispatch(); // Hook to send actions to redux
     const { assets, loading, error } = useSelector((state) => state.assets); // Selectors to get assets, loading and error states from redux

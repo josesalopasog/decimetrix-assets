@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zZXNhbG9wYXNvIiwiYSI6ImNtOTMzc2RsbTBpbmkya3ExdHA0MjFpNWkifQ.-WZUzhvFTM_AEgGZKxkUaA';
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
 const getColorByType = (type) => { // Function to get color by asset type
   switch (type) {

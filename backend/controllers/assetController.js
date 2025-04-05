@@ -1,5 +1,6 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Asset from "../models/assetsModel.js";
+import { io } from "../server.js"
 
 const createAsset = asyncHandler(async (req, res) => {
   const { name, description, latitude, longitude, type } = req.body;
@@ -23,6 +24,7 @@ const createAsset = asyncHandler(async (req, res) => {
 
   try {
     await newAsset.save(); //Save the new asset to the DB
+    io.emit("assetCreated", newAsset); // Emit a WS event when a new asset is created
     res
       .status(201)
       .json({ message: "Asset created successfully", asset: newAsset }); //Set the status code to 201 (Created) and send the response
@@ -60,6 +62,7 @@ const updateAsset = asyncHandler(async (req, res) => {
   const updatedAsset = await Asset.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   }); //Update the asset with the provided data
+  io.emit("assetUpdated", updatedAsset); //Emits a WS event when an asset is updated
   res.status(200).json(updatedAsset);
 });
 
@@ -75,6 +78,7 @@ const deleteAsset = asyncHandler(async (req, res) => {
   }
 
   await Asset.findByIdAndDelete(req.params.id);
+  io.emit("assetDeleted", asset._id); //Emits a WS event when an asset is updated
   res.status(200).json({ message: "Asset deleted successfully" });
 });
 

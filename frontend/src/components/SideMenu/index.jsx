@@ -49,15 +49,8 @@ const SideMenu = () => {
               </Link>
             </ul>
             <hr className='text-gray-300' />
-            <h2>Reportes</h2>
-            <ul>
-              <li>Estadisticas</li>
-              <li>Generar reportes</li>
-              <li>Historial</li>
-            </ul>
             {user.role === 'admin' && ( // Show admin options only if user is admin
               <>
-                <hr className='text-gray-300' />
                 <Link to='/dashboard/users'><h2>Administración</h2></Link>
                 <ul>
                   <Link to='/dashboard/users#see-users'>

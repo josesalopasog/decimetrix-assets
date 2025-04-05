@@ -1,15 +1,12 @@
 //Package ⬇️
 import bcrypt from "bcryptjs";
-
 //Models ⬇️
 import User from "../models/userModel.js";
-import Asset from "../models/assetsModel.js";
-
 //Utils ⬇️
 import generateToken from "../utils/generateToken.js";
-
 //Middlewares ⬇️
 import asyncHandler from "../middlewares/asyncHandler.js";
+import { io } from "../server.js"
 
 const createUser = asyncHandler(async (req, res) => {
   const { username, email, password, role } = req.body; //Get the username, email, password and role from the request body
@@ -37,7 +34,15 @@ const createUser = asyncHandler(async (req, res) => {
   }); //Create a new user with the name, email, the hashed password and the role
   try {
     await newUser.save(); //Save the new user to the database
-
+    io.emit("userCreated", { //Emit WS event when a new user is created
+      message: "New user has been created",
+      user: {
+        _id: newUser._id,
+        username: newUser.username,
+        email: newUser.email,
+        role: newUser.role,
+      },
+    });
     return res.status(201).json({
       //Set the status code to 201 (Created) and send the response
       _id: newUser._id,
@@ -149,7 +154,15 @@ const updateUserById = asyncHandler(async (req, res) => {
     if (role) user.role = role; //If the role is provided, set the admin status of the user
 
     await user.save(); //Save the updated user to the database
-
+    io.emit("userUpdated", { //Emit WS event when user is updated
+      message: "User has been updated",
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+      },
+    });
     return res.json({
       //Send the updated user as a response
       _id: user._id,
@@ -172,6 +185,10 @@ const deleteUserById = asyncHandler(async (req, res) => {
       return res.status(400).json({ message: "Cannot delete admin user" }); //Set the status code to 400 (Bad Request) and send the response
     } else {
       await User.deleteOne({ _id: user._id }); //Delete the user from the database
+      io.emit("userDeleted", { //Emit WS event when the user is deleted
+        message: "User has been deleted",
+        userId: user._id,
+      });
       return res.json({ message: "User removed" }); //Send a success message as a response
     }
   }

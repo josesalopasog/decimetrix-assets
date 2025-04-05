@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 //Redux actions ⬇️
 import { loginUser } from "../../redux/slices/authSlice"; // Import login action
+import useWSNotifications from "../../hooks/useWSNotifications";
 //Styles ⬇️
 import './styles.css';
 import { ArrowUTurnLeftIcon, EyeOffIcon, EyeIcon } from "../../assets/icons";
 
 const Login = () => {
+  useWSNotifications();
   const [email, setEmail] = useState(""); // Store user email
   const [password, setPassword] = useState(""); // Store user password
   const [showPassword, setShowPassword] = useState(false); // Store password visibility state
