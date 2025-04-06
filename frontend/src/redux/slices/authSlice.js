@@ -12,7 +12,16 @@ const loginUser = createAsyncThunk(
         { email, password },
         { withCredentials: true } // Send cookies with the request
       ); // Send credentials to backend
-      return response.data; // Return the response (includes the token)
+      localStorage.setItem("token", response.data.token);
+      return {
+        user: {
+          _id: response.data._id,
+          username: response.data.username,
+          email: response.data.email,
+          role: response.data.role,
+        },
+        token: response.data.token,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data); // Handle errors
     }
@@ -25,6 +34,7 @@ const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await api.post("/users/logout"); // Call backend to log out
+      localStorage.removeItem("token");
       return null; // Return null to clear Redux state
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data); // Handle errors

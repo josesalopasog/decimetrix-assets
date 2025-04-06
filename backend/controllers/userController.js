@@ -76,7 +76,7 @@ const loginAuthUser = asyncHandler(async (req, res) => {
       //If the passwords do not match
       return res.status(401).json({ message: "Invalid password" }); //Set the status code to 401 (Unauthorized) and send the response
     } else {
-      generateToken(res, userExists._id); //Generate a token for the user
+      const token = generateToken(userExists._id); //Generate a token for the user
 
       return res.status(200).json({
         //Set the status code to 200 (OK) and send the response
@@ -84,6 +84,7 @@ const loginAuthUser = asyncHandler(async (req, res) => {
         username: userExists.username, //Name of the user
         email: userExists.email, //Email of the user
         role: userExists.role, //Admin status of the
+        token,
       });
     }
   }
@@ -103,11 +104,6 @@ const getCurrentUser = (req, res) => {
 };
 
 const logoutCurrentUser = asyncHandler(async (req, res) => {
-  res.clearCookie('jwt', {
-    httpOnly: true,
-    sameSite: 'None',
-    secure: true, 
-  });
   return res.status(200).json({ message: "Logged out successfully" })//Set the status code to 200 (OK) and send the response
 });
 

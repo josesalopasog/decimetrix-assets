@@ -5,27 +5,27 @@ import { socket } from "../socket";
 const useWSNotifications = () => {
   useEffect(() => {
     socket.on("userCreated", (data) => {
-      toast.success(`🧑‍💻 ${data.user.username} was created`);
+      toast.success(`🧑‍💻 ${data.user.username} fue creado con exito!`);
     });
 
     socket.on("userUpdated", (data) => {
-      toast.info(`✏️ ${data.user.username} was updated`);
+      toast.info(`✏️ Usuario: ${data.user.username} fue modificado con exito!`);
     });
 
     socket.on("userDeleted", () => {
-      toast.error(`🗑️ A user was deleted`);
+      toast.error(`🗑️ El usuario fue elimnado con exito!`);
     });
 
     socket.on("assetCreated", (data) => {
-      toast.success(`📍 Asset "${data.name}" created`);
+      toast.success(`📍 El activo: "${data.name}" fue creado con exito!`);
     });
 
     socket.on("assetUpdated", (data) => {
-      toast.info(`🔧 Asset "${data.name}" updated`);
+      toast.info(`🔧 El acitvo: "${data.name}" fue modificado con exito!`);
     });
 
     socket.on("assetDeleted", () => {
-      toast.error(`❌ Asset deleted`);
+      toast.error(`🗑️ El activo fue eliminado con exito!`);
     });
 
     return () => { // Cleanup listeners when component unmounts

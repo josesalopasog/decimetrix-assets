@@ -24,8 +24,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
     try {
-      await dispatch(loginUser({ email, password })).unwrap(); // Dispatch login action and wait for it to complete
-      navigate("/dashboard"); // Redirect to dashboard on successful login
+      const result = await dispatch(loginUser({ email, password })).unwrap(); // Dispatch login action and wait for it to complete
+      if(result?.user) navigate("/dashboard"); // Redirect to dashboard on successful login
     } catch (err) {
       console.error("Login failed:", err); // Log error if login fails
     }
