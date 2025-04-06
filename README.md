@@ -5,7 +5,9 @@
 
 🔗 **Enlace de despliegue del frontend:**  
 👉 [https://decimetrix-assets.netlify.app/](https://decimetrix-assets.netlify.app/)
-
+👉 Usuario de prueba:
+    -User: jose.operator@decimetrix.com
+    -Password: operator123456
 ---
 
 ## 🧩 Descripción del Proyecto
