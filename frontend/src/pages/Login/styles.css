@@ -1,45 +1,46 @@
-@import "tailwindcss";
-
 .login-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: calc(100vh - 70px);
+  padding: 1rem;
 }
 
 .login-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
+  align-items: flex-start;
   max-width: 500px;
+  width: 100%;
   max-height: 700px;
   background-color: #000;
   color: #fff;
   border-radius: 10px;
-  padding: 40px;
+  padding: clamp(20px, 5vw, 40px);
   margin: 20px;
-  gap: 10px;
+  gap: clamp(10px, 2vw, 20px);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   position: relative;
 }
 
 .login-title {
-  font-size: 56px;
+  font-size: clamp(32px, 6vw, 56px);
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: clamp(10px, 3vw, 20px);
 }
 
 .login-text {
-  font-size: 18px;
+  font-size: clamp(14px, 4vw, 18px);
   font-weight: 400;
-  margin-bottom: 10px;
+  margin-bottom: clamp(5px, 2vw, 10px);
 }
+
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(16px, 3vw, 20px);
   width: 100%;
 }
 
@@ -47,10 +48,10 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 60px;
+  height: clamp(45px, 6vw, 60px);
   background-color: #fff;
   color: #000;
-  font-size: 24px;
+  font-size: clamp(16px, 5vw, 24px);
   font-weight: bold;
   border-radius: 5px;
   padding: 10px;
@@ -68,7 +69,7 @@
   height: 100%;
   background-color: transparent;
   color: #000;
-  font-size: 24px;
+  font-size: clamp(16px, 5vw, 24px);
   font-weight: bold;
   border: none;
   padding-left: 10px;
@@ -83,11 +84,11 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 60px;
+  height: clamp(45px, 6vw, 60px);
   background: linear-gradient(to right, #02feff, #4634c0, #02feff);
   background-size: 200% 100%;
   color: #fff;
-  font-size: 24px;
+  font-size: clamp(16px, 5vw, 24px);
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
@@ -114,12 +115,11 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.eye-icon {
-  width: 25px;
-  height: 25px;
-  color: #000;
-  cursor: pointer;
+.arrow-icon:hover {
+  transform: scale(1.1);
 }
+
+.eye-icon,
 .eye-off-icon {
   width: 25px;
   height: 25px;
@@ -127,13 +127,8 @@
   cursor: pointer;
 }
 
-.arrow-icon:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease-in-out;
-}
-
 @media (max-width: 640px) {
-  .login-container{
+  .login-container {
     justify-content: flex-start;
   }
 }

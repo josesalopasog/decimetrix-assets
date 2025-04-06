@@ -26,12 +26,10 @@ const Header = () => {
                     )}
                 </div>
                 <div className='header-second-column'>
-                    <Link to='/'>
-                        <img
-                            className='decimetrix-logo'
-                            src={decimetrixLogo}
-                            alt='decimetrix-logo' />
-                    </Link>
+                    <img
+                        className='decimetrix-logo'
+                        src={decimetrixLogo}
+                        alt='decimetrix-logo' />
                 </div>
                 <div className='header-third-column'>
                     {user ? ( // If user is logged in, show username and logout button
